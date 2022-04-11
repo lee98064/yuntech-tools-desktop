@@ -14,9 +14,9 @@ module.exports = {
   },
   loading: false,
   plugins: [
-    {ssr: true, src: '@/plugins/icons.js'},
-    
-    
+    { ssr: true, src: '@/plugins/icons.js' },
+
+
   ],
   buildModules: [
     '@nuxt/typescript-build',
@@ -27,12 +27,24 @@ module.exports = {
   vuetify: {
     theme: {
       themes: {
+        // light: {
+        //   primary: '#1867c0',
+        //   secondary: '#b0bec5',
+        //   accent: '#8c9eff',
+        //   error: '#b71c1c',
+        // },
         light: {
-          primary: '#1867c0',
-          secondary: '#b0bec5',
+          primary: '#00C095',
+          secondary: '#909399',
           accent: '#8c9eff',
           error: '#b71c1c',
         },
+        dark: {
+          primary: '#00C095',
+          secondary: '#909399',
+          accent: '#8c9eff',
+          error: '#b71c1c',
+        }
       },
     }
   },

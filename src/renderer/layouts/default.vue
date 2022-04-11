@@ -1,8 +1,9 @@
 <template>
-  <v-app id="inspire">
-    <v-system-bar app window height="50px">
-      <v-icon>mdi-message</v-icon>
-      <span>雲科工具包</span>
+  <v-app id="inspire" style="padding: 30px">
+    <v-system-bar app window dark color="primary" height="45px">
+      <v-icon @click="drawer = !drawer">mdi-menu</v-icon>
+      <!-- <v-icon>mdi-application</v-icon> -->
+      <span style="font-size: 1.2rem">雲科工具包</span>
       <v-spacer class="drag"></v-spacer>
       <v-icon @click="minimize">mdi-minus</v-icon>
       <v-icon v-if="!ismaximize" @click="maximize"
@@ -13,11 +14,27 @@
     </v-system-bar>
 
     <v-navigation-drawer class="drawer" v-model="drawer" app>
-      <v-sheet color="grey lighten-4" class="pa-4">
+      <v-img
+        height="180"
+        class="pa-4"
+        src="https://webapp.yuntech.edu.tw/YunTechSSO/Content/patterns/4.png"
+      >
+        <div class="text-center">
+          <v-avatar class="mb-4" color="grey darken-1" size="64">
+            <v-img
+              aspect-ratio="30"
+              src="https://yt3.ggpht.com/esazPAO03T0f0vKdByJvkDy6MSwjyG5f-c_2S2CJapszQ3KPQyZarpoqvgv0Us0atUbILytj=s88-c-k-c0x00ffffff-no-rj"
+            />
+          </v-avatar>
+          <h2 class="white--text">XXXXXXXXX</h2>
+        </div>
+      </v-img>
+      <!-- <v-sheet color="grey lighten-4" class="pa-4">
         <v-avatar class="mb-4" color="grey darken-1" size="64"></v-avatar>
 
-        <div>john@vuetifyjs.com</div>
-      </v-sheet>
+        <div>資訊管理</div>
+        <div>B11111111@yuntech.edu.tw</div>
+      </v-sheet> -->
 
       <v-divider></v-divider>
 
@@ -41,14 +58,20 @@
 </template>
 
 <script>
-import appHeader from "@/components/header";
 const { ipcRenderer } = require("electron");
 export default {
   name: "DefaultLayout",
-  components: { appHeader },
+  components: {},
   data() {
     return {
       ismaximize: false,
+      drawer: true,
+      links: [
+        ["mdi-inbox-arrow-down", "Inbox"],
+        ["mdi-send", "Send"],
+        ["mdi-delete", "Trash"],
+        ["mdi-alert-octagon", "Spam"],
+      ],
     };
   },
   methods: {
@@ -74,13 +97,30 @@ export default {
 body {
   margin: 0 !important;
 }
+
 .drag {
-  height: 15px;
+  height: 40px;
   -webkit-app-region: drag;
   user-select: none;
 }
 
 .drawer {
-  max-height: calc(100vh - 50px);
+  max-height: calc(100vh - 45px);
+}
+
+.theme--dark.v-system-bar {
+  box-shadow: 0 0 8px rgb(0 0 0 / 50%);
+  /* border-radius: 5px 5px 0px 0px; */
+}
+
+.theme--dark.v-system-bar,
+.theme--dark.v-system-bar .v-icon {
+  color: #ffff;
+}
+
+@media (max-width: 1265px) {
+  .drawer {
+    max-height: 100vh;
+  }
 }
 </style>
