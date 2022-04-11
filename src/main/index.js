@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, ipcMain } from 'electron'
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -8,4 +8,7 @@ app.on('window-all-closed', function () {
 })
 
 // Load here all startup windows
-require('./mainWindow')
+const window = require('./mainWindow')
+
+
+
