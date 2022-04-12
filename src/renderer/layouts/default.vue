@@ -39,15 +39,34 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-item v-for="[icon, text] in links" :key="icon" link>
+        <v-list-item link to="/" key="mdi-home">
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
-          </v-list-item-content>
+          <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
+        <v-list-group
+          v-for="link in links"
+          :key="link.icon"
+          :prepend-icon="link.icon"
+        >
+          <template v-slot:activator>
+            <v-list-item-title v-text="link.text"></v-list-item-title>
+          </template>
+          <v-list-item
+            v-for="item in link.sub_items"
+            :key="item.icon"
+            link
+            :to="item.link"
+          >
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
@@ -67,11 +86,29 @@ export default {
       ismaximize: false,
       drawer: true,
       links: [
-        ["mdi-inbox-arrow-down", "Inbox"],
-        ["mdi-send", "Send"],
-        ["mdi-delete", "Trash"],
-        ["mdi-alert-octagon", "Spam"],
+        {
+          icon: "mdi-email",
+          text: "Mail",
+          sub_items: [
+            {
+              icon: "mdi-inbox-arrow-down",
+              text: "Inbox",
+              link: "/mail/page",
+            },
+            {
+              icon: "mdi-send",
+              text: "Send",
+              link: "/mail/send",
+            },
+          ],
+        },
       ],
+      // links: [
+      //   ["mdi-inbox-arrow-down", "Inbox"],
+      //   ["mdi-send", "Send"],
+      //   ["mdi-delete", "Trash"],
+      //   ["mdi-alert-octagon", "Spam"],
+      // ],
     };
   },
   methods: {
