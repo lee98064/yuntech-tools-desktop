@@ -1,5 +1,5 @@
 import BrowserWinHandler from './BrowserWinHandler'
-const { ipcMain } = require('electron')
+const { ipcMain, app } = require('electron')
 
 const winHandler = new BrowserWinHandler({
   height: 600,
@@ -30,7 +30,8 @@ winHandler.onCreated(_browserWindow => {
   })
 
   ipcMain.on("close", (event, data) => {
-    _browserWindow.close();
+    // _browserWindow.close();
+    app.exit()
   })
 
   // Or load custom url

@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const electron = require('electron')
+const service = require('../src/service')
 
 const { Pipeline, Logger } = require('@xpda-dev/core')
 const { ElectronLauncher } = require('@xpda-dev/electron-launcher')
@@ -22,7 +23,7 @@ const launcher = new ElectronLauncher({
   entryFile: path.join(DIST_DIR, 'main/index.js')
 })
 
-function hasConfigArgument (array) {
+function hasConfigArgument(array) {
   for (const el of array) if (el === '--config' || el === '-c') return true
   return false
 }

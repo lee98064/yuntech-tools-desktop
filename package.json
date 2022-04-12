@@ -41,5 +41,9 @@
     "vuetify": "^2.5.10",
     "webpack": "^4.46.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "imap": "^0.8.19"
   }
 }
